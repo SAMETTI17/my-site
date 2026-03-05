@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎮 俺のプロフィール</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Comic Sans MS', 'Arial', sans-serif;
+            background-image: linear-gradient(rgba(0,0,0,0.22), rgba(0,0,0,0.12)), url('https://img2.animatetimes.com/2026/01/a58ca2c6bd8c90f10aef290bb43781276972dfe99c54b1_76506633_a8e91e8359bda57dc52e94b48ca22a4bce380d42.jpg');
+            background-size: 130%;
+            background-position: center 35%;
+            background-repeat: no-repeat;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            max-width: 650px;
+            padding: 40px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .profile-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .profile-image {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background: #feca57;
+            margin: 0 auto 20px;
+            overflow: hidden;
+            border: 4px solid #ff6b9d;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .profile-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        h1 {
+            color: #ff6b9d;
+            margin-bottom: 10px;
+            font-size: 36px;
+        }
+        
+        .title {
+            color: #feca57;
+            font-size: 20px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        
+        .intro {
+            color: #333;
+            line-height: 1.8;
+            margin-bottom: 30px;
+            font-size: 16px;
+        }
+        
+        .section {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.4);
+            border-radius: 15px;
+            backdrop-filter: blur(8px);
+        }
+        
+        .section h2 {
+            color: #ff6b9d;
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+        
+        .skills, .hobbies, .games {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        
+        .skill-tag, .hobby-tag, .game-tag {
+            background: linear-gradient(135deg, #ff6b9d, #feca57);
+            color: white;
+            padding: 10px 18px;
+            border-radius: 25px;
+            font-size: 15px;
+            font-weight: bold;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .food-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            font-size: 30px;
+        }
+        
+        .contact {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            color: #333;
+            font-size: 16px;
+        }
+        
+        .contact-item strong {
+            min-width: 80px;
+            color: #ff6b9d;
+        }
+        
+        .contact-item a {
+            color: #ff6b9d;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        .contact-item a:hover {
+            text-decoration: underline;
+        }
+
+        .music-link {
+            display: inline-block;
+            padding: 12px 20px;
+            background: linear-gradient(135deg, #ff6b9d, #feca57);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+        }
+
+        .music-link:hover {
+            transform: scale(1.05);
+        }
+
+        @keyframes rain {
+            0% {
+                transform: translateY(-100vh);
+                opacity: 0.9;
+            }
+            100% {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+        }
+
+        @keyframes sparkle {
+            0% {
+                box-shadow: 
+                    0 0 0px 0px rgba(255, 255, 255, 0.8),
+                    4px 4px 8px 0px rgba(173, 216, 230, 0.6),
+                    -4px 4px 8px 0px rgba(173, 216, 230, 0.6);
+            }
+            50% {
+                box-shadow: 
+                    0 0 15px 5px rgba(255, 255, 255, 1),
+                    8px 8px 16px 2px rgba(173, 216, 230, 0.8),
+                    -8px 8px 16px 2px rgba(173, 216, 230, 0.8);
+            }
+            100% {
+                box-shadow: 
+                    0 0 0px 0px rgba(255, 255, 255, 0.8),
+                    4px 4px 8px 0px rgba(173, 216, 230, 0.6),
+                    -4px 4px 8px 0px rgba(173, 216, 230, 0.6);
+            }
+        }
+
+        .rain {
+            position: fixed;
+            width: 6px;
+            height: 28px;
+            background: rgba(255, 255, 255, 0.85);
+            animation: rain 1.2s infinite, sparkle 0.8s infinite;
+            pointer-events: none;
+            top: -28px;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div id="rain-container"></div>
+
+    <script>
+        // Dynamic rain generation
+        const rainContainer = document.getElementById('rain-container');
+        for (let i = 1; i <= 99; i++) {
+            const rainDrop = document.createElement('div');
+            rainDrop.className = 'rain';
+            const delay = (Math.random() * 0.5).toFixed(2);
+            const duration = (0.9 + Math.random() * 0.5).toFixed(2);
+            rainDrop.style.left = i + '%';
+            rainDrop.style.animationDelay = delay + 's';
+            rainDrop.style.animationDuration = duration + 's';
+            rainContainer.appendChild(rainDrop);
+        }
+    </script>
+    
+    <div class="container">
+        <div class="profile-header">
+            <div class="profile-image">
+                <img src="https://hiyokoyarou.com/wp-content/uploads/2022/04/icon-star2_color.png" alt="Profile avatar: cute star icon">
+            </div>
+            <h1>🎮 サメ</h1>
+            <p class="title">ゲーム大好き17歳 </p>
+        </div>
+        
+        <p class="intro">
+            🎮 ほぼ毎日ゲームしてます。<br>
+            基本的にpcゲームなら何でもします!気軽に遊んでくれる人募集中です!👍
+        </p>
+        
+        <div class="section">
+            <h2>🎮 好きなゲーム</h2>
+            <div class="games">
+                <span class="game-tag">Fortnite</span>
+                <span class="game-tag">Apex Legends</span>
+                <span class="game-tag">Minecraft</span>
+                <span class="game-tag">valorant</span>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>🍕 好きな食べ物</h2>
+            <div class="hobbies">
+                <span class="hobby-tag">ピザ</span>
+                <span class="hobby-tag">ハンバーガー</span>
+                <span class="hobby-tag">ラーメン</span>
+                <span class="hobby-tag">寿司</span>
+                <span class="hobby-tag">ケーキ</span>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>🎨 趣味・好きなこと</h2>
+            <div class="hobbies">
+                <span class="hobby-tag">ゲーム</span>
+                <span class="hobby-tag">アニメ</span>
+                <span class="hobby-tag">友達と遊ぶ</span>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>🎵 最近聞いている曲</h2>
+            <p>
+                <a href="https://youtu.be/g6yAXqs7GpQ" target="_blank" rel="noopener" class="music-link">
+                    🎧 YouTubeで聴く
+                </a>
+            </p>
+        </div>
+        
+        <div class="section">
+            <h2>📱 sns関連　　クリックしてね！</h2>
+            <div class="contact">
+                <div class="contact-item">
+                    <a href="https://discord.me/hau05106" target="_blank" style="display: flex; align-items: center; gap: 10px;">
+                        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/discord.svg" alt="Discord" style="width: 48px; height: 48px;">
+                        <span>hau05106</span>
+                    </a>
+                </div>
+                <div class="contact-item">
+                    <a href="https://twitter.com/F8OCtg8T9A51746" target="_blank" style="display: flex; align-items: center; gap: 10px;">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/c/ce/X_logo_2023.svg" alt="Twitter" style="width: 48px; height: 48px;">
+                        <span>@F8OCtg8T9A51746</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
